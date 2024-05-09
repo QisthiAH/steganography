@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stegano_app/decode.dart';
 import 'package:stegano_app/encode.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -63,7 +64,12 @@ class MyHomePage extends StatelessWidget {
                 ),
                 const SizedBox(width: 30),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Decode()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.grey, width: 1),

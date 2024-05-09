@@ -1,16 +1,15 @@
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Encode extends StatefulWidget {
-  const Encode({super.key});
+class Decode extends StatefulWidget {
+  const Decode({super.key});
 
   @override
-  State<Encode> createState() => _EncodeState();
+  State<Decode> createState() => _DecodeState();
 }
 
-class _EncodeState extends State<Encode> {
+class _DecodeState extends State<Decode> {
   XFile? pickedImage;
   File? pickedPdf;
 
@@ -19,7 +18,7 @@ class _EncodeState extends State<Encode> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Encode',
+          'Decode',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 44, 43, 43),
@@ -57,52 +56,15 @@ class _EncodeState extends State<Encode> {
               child: const Text('upload image'),
             ),
             const SizedBox(height: 20),
-            pickedPdf == null
-                ? Container(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'no pdf file',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  )
-                : SizedBox(
-                    height: 100,
-                    width: 500,
-                    child: Center(
-                      child: Text(
-                        pickedPdf!.path,
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ),
-            const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: pickedImage != null
-                  ? () async {
-                      FilePickerResult? result = await FilePicker.platform.pickFiles(
-                        type: FileType.custom,
-                        allowedExtensions: ['pdf'],
-                      );
-                      if (result != null) {
-                        pickedPdf = File(result.files.single.path!);
-                        setState(() {});
-                      }
-                    }
-                  : null,
-              child: const Text('upload pdf'),
+              onPressed: pickedImage != null ? () {} : null,
+              child: const Text('decode image'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: pickedPdf != null ? () {} : null,
+              onPressed: () {},
               child: const Text(
-                "download file encode",
+                "download file decode",
               ),
             ),
           ],
