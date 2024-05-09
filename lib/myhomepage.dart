@@ -12,11 +12,11 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "STEGANOGRAPHY",
+          "HIDEP STEGANOGRAPHY",
           style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 44, 43, 43),
+        backgroundColor: Color.fromARGB(255, 18, 24, 110),
       ),
       body: Center(
         child: Column(
@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
               width: 400,
               child: Center(
                   child: Text(
-                "Welcome to NamaApp",
+                "Welcome to HIDEP",
                 style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
               )),
             ),
@@ -41,7 +41,7 @@ class MyHomePage extends StatelessWidget {
               width: 300,
               child: Center(
                   child: Text(
-                "Let's Choose Your Needs",
+                "Let's Hide Your PDF",
                 style: TextStyle(fontStyle: FontStyle.italic),
               )),
             ),
@@ -58,11 +58,11 @@ class MyHomePage extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.grey, width: 1),
+                          // side: const BorderSide(color: Colors.grey, width: 1),
                           borderRadius: BorderRadius.circular(20))),
                   child: const Text("Encode", style: TextStyle(color: Color.fromARGB(255, 30, 29, 29))),
                 ),
-                const SizedBox(width: 30),
+                const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -72,7 +72,7 @@ class MyHomePage extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                          side: const BorderSide(color: Colors.grey, width: 1),
+                          // side: const BorderSide(color: Colors.grey, width: 1),
                           borderRadius: BorderRadius.circular(20))),
                   child: const Text("Decode", style: TextStyle(color: Color.fromARGB(255, 30, 29, 29))),
                 ),
@@ -82,7 +82,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const BottomAppBar(
-        color: Color.fromARGB(255, 94, 93, 93), // warna latar belakang footer
+        color: Color.fromARGB(255, 18, 24, 110), // warna latar belakang footer
         child: SizedBox(
           height: 50.0, // tinggi footer
           child: Row(
