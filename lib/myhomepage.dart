@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stegano_app/encode.dart';
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({
     super.key,
@@ -27,19 +29,32 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 30),
             const SizedBox(
               width: 400,
-              child: Center(child: Text("Welcome to NamaApp", style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),)),
+              child: Center(
+                  child: Text(
+                "Welcome to NamaApp",
+                style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+              )),
             ),
             const SizedBox(height: 8),
             const SizedBox(
               width: 300,
-              child: Center(child: Text("Let's Choose Your Needs", style: TextStyle(fontStyle: FontStyle.italic),)),
+              child: Center(
+                  child: Text(
+                "Let's Choose Your Needs",
+                style: TextStyle(fontStyle: FontStyle.italic),
+              )),
             ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Encode()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.grey, width: 1),
@@ -53,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.grey, width: 1),
                           borderRadius: BorderRadius.circular(20))),
-                  child: const Text("Decode",  style: TextStyle(color: Color.fromARGB(255, 30, 29, 29))),
+                  child: const Text("Decode", style: TextStyle(color: Color.fromARGB(255, 30, 29, 29))),
                 ),
               ],
             ),
