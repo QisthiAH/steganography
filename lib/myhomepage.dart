@@ -12,11 +12,11 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "HIDEP STEGANOGRAPHY",
+          "BUTA CODERS HIDEP",
           style: TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 18, 24, 110),
+        backgroundColor: const Color.fromARGB(255, 18, 24, 110),
       ),
       body: Center(
         child: Column(
@@ -89,7 +89,7 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                '© 2024 RiazQi.',
+                '© 2024 ButaCoders.',
                 style: TextStyle(color: Colors.white),
               ),
             ],
