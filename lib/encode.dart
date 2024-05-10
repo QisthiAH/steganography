@@ -1,7 +1,12 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
+import 'package:stegano_app/process/process_encode.dart';
+// import 'package:stegano_app/process/process_encode.dart';
+// import 'package:steganograph/steganograph.dart';
+
+// import 'process/process_encode.dart';
 
 class Encode extends StatefulWidget {
   const Encode({super.key});
@@ -11,8 +16,9 @@ class Encode extends StatefulWidget {
 }
 
 class _EncodeState extends State<Encode> {
-  XFile? pickedImage;
+  File? pickedImage;
   File? pickedPdf;
+  // File? result;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class _EncodeState extends State<Encode> {
           children: [
             pickedImage == null
                 ? Container(
-                    height: 100,
+                    height: 50,
                     width: 100,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
@@ -44,22 +50,34 @@ class _EncodeState extends State<Encode> {
                     ),
                   )
                 : SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.network('${pickedImage?.path}'),
+                    height: 400,
+                    width: 300,
+                    child: Image.file(File(pickedImage!.path), ),
                   ),
             const SizedBox(height: 10),
+
+
+
+            // tombol upload gambar
             ElevatedButton(
               onPressed: () async {
-                pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
-                setState(() {});
+                FilePickerResult? picked = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['jpeg', 'png'],
+                );
+                if (picked != null) {
+                  setState(() {});
+                  pickedImage = File(picked.files.single.path!);
+                }
               },
-              child: const Text('upload image'),
+              child: const Text('Upload Image'),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+
+
             pickedPdf == null
                 ? Container(
-                    height: 100,
+                    height: 50,
                     width: 100,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
@@ -67,22 +85,37 @@ class _EncodeState extends State<Encode> {
                     ),
                     child: const Center(
                       child: Text(
+                        textAlign: TextAlign.center,
                         'no pdf file',
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(
+                          fontSize: 15 ),
                       ),
                     ),
                   )
+
+
+                // nama pdf
                 : SizedBox(
                     height: 100,
                     width: 500,
                     child: Center(
-                      child: Text(
-                        pickedPdf!.path,
-                        style: const TextStyle(fontSize: 15),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          right: 30,
+                          left: 30
+                        ),
+                        child: Text(
+                          pickedPdf!.path.split('/').last,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 15),
+                        ),
                       ),
                     ),
                   ),
             const SizedBox(height: 10),
+
+
+            // tombol upload pdf
             ElevatedButton(
               onPressed: pickedImage != null
                   ? () async {
@@ -91,18 +124,23 @@ class _EncodeState extends State<Encode> {
                         allowedExtensions: ['pdf'],
                       );
                       if (result != null) {
-                        pickedPdf = File(result.files.single.path!);
                         setState(() {});
+                        pickedPdf = File(result.files.single.path!);
                       }
                     }
                   : null,
-              child: const Text('upload pdf'),
+              child: const Text('Upload PDF'),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+
+
+            // tombol unduh hasil encode
             ElevatedButton(
-              onPressed: pickedPdf != null ? () {} : null,
+              onPressed: pickedPdf != null ? () {
+                encode(pickedPdf!.path, pickedImage!.path);
+              } : null,
               child: const Text(
-                "download file encode",
+                "Encode and Download",
               ),
             ),
           ],
@@ -111,3 +149,8 @@ class _EncodeState extends State<Encode> {
     );
   }
 }
+
+
+
+
+

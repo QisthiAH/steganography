@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:stegano_app/process/process_decode.dart';
 
 class Decode extends StatefulWidget {
   const Decode({super.key});
@@ -43,30 +44,33 @@ class _DecodeState extends State<Decode> {
                     ),
                   )
                 : SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.network('${pickedImage?.path}'),
+                    height: 400,
+                    width: 300,
+                    child: Image.file(File(pickedImage!.path)),
                   ),
             const SizedBox(height: 10),
+
+
+
+            // Tombol upload image
             ElevatedButton(
               onPressed: () async {
                 pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
                 setState(() {});
               },
-              child: const Text('upload image'),
+              child: const Text('Upload Image'),
             ),
             const SizedBox(height: 20),
+
+            // Tombol decode 
             ElevatedButton(
-              onPressed: pickedImage != null ? () {} : null,
-              child: const Text('decode image'),
+              onPressed: pickedImage != null ? () {
+                decode(pickedImage!.path);
+              } : null,
+              child: const Text('Decode and Download'),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                "download file decode",
-              ),
-            ),
+
           ],
         ),
       ),
